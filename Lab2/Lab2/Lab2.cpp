@@ -4,7 +4,9 @@
 #include <iostream>
 #include "io.h"
 #include <Windows.h>
+#include "MyMath.h"
 using namespace std;
+using namespace MySpace;
 
 //Перегрузка функций с реализацией после исполняемой функции main.
 void print(string s);
@@ -13,11 +15,14 @@ void print(float f);
 
 int main()
 {
-	print("hello");
-	print(3.3);
-	//команды для работы с кириллицей
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	cout << MySpace::div(2, 3);
+	cout << sum(3, 5);
+	cin.get();
+	//print("hello");
+	//print(3.3);
+	////команды для работы с кириллицей
+	//SetConsoleCP(1251);
+	//SetConsoleOutputCP(1251);
 
 	//cout << "Enter  your name: ";
 	//string name;
@@ -64,39 +69,39 @@ int main()
 	//}
 	//массивы
 
-	int numbers[5];
-	numbers[0] = 1;
-	numbers[3] = 4;
-	int length = sizeof(numbers) / sizeof(numbers[0]);
-	for (int i = 0; i < length; i++) {
-		//cout << numbers[i] << " ";
-	}
+	//int numbers[5];
+	//numbers[0] = 1;
+	//numbers[3] = 4;
+	//int length = sizeof(numbers) / sizeof(numbers[0]);
+	//for (int i = 0; i < length; i++) {
+	//	//cout << numbers[i] << " ";
+	//}
 
-	int array[5] = { 1,2,3,4,5 };
-	//перебор массива циклом foreach
-	int sum = 0;
-	for (int a : array) {
-		cout << a << " ";
-		sum += a;
-	}
-	//cout << endl << sum << endl;
-	sum = 0;
-	for (int i = 0; i < length; i++) {
-		sum += array[i];
-	}
+	//int array[5] = { 1,2,3,4,5 };
+	////перебор массива циклом foreach
+	//int sum = 0;
+	//for (int a : array) {
+	//	cout << a << " ";
+	//	sum += a;
+	//}
+	////cout << endl << sum << endl;
+	//sum = 0;
+	//for (int i = 0; i < length; i++) {
+	//	sum += array[i];
+	//}
 	//cout << sum << endl;
 	//если заранее неопределен тип данных массив, то задаем автоопределение типа для переменной перебора
-	for (auto i : array) { break; }
+	//for (auto i : array) { break; }
 
-	//двумерные массивы. Перебор циклом foreach
-	cout << "Двумерные массивы" << endl;
-	int mas[2][3] = { {1,2,3}, {4,5,6} };
-	for (auto& i : mas) {
-		for (auto n : i) {
-			//cout << n << " ";
-		}
-		cout << "\n";
-	}
+	////двумерные массивы. Перебор циклом foreach
+	//cout << "Двумерные массивы" << endl;
+	//int mas[2][3] = { {1,2,3}, {4,5,6} };
+	//for (auto& i : mas) {
+	//	for (auto n : i) {
+	//		//cout << n << " ";
+	//	}
+	//	cout << "\n";
+	//}
 
 }
 //реализация функций объявленных до исполняемой функции main
