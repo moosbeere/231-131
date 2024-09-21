@@ -1,0 +1,82 @@
+TreeSearch(T, k)
+	x<-root(T)
+	if x = NULL OR k = key[x] then
+	return x;
+
+	if k < key[x] then return TreeSearch(left[x], k)
+	else return TreeSearch(right[x], k)
+	
+IterativeTreeSearch(T, k)
+	x <- root[T]
+	while x != NULL AND k != key[x] do
+	if k < key[x] then
+		x <- left[x]
+	else 
+		x <- right[x]
+	return x
+	
+TreeMinimum(T)
+	x <- root[T]
+	while left[x] != NULL do
+		x <- left[x]
+	return x
+	
+TreeMaximum(T)
+	x <- root[T]
+	while right[x] != NULL do	
+		x <- right[x]
+	return x
+
+TreeSuccessor(T, x)
+	if (right[x] != NULL) then
+		return TreeMinimum(T, right[x])
+	
+	y <- parent[x]
+	while y != NULL AND x = right[y] do	
+		x <- y
+		y <- parent[y]
+	return y
+	
+TreeSearchInexact(T, k)
+	x <- root[T]
+	y <- NULL
+	while x != NULL AND k != key[x] do
+		y <- x
+		if k < key[x] then
+			x <- left[x]
+		else 
+			x <- right[x]
+			
+	if (x != NULL)
+	y <- x
+	return y
+
+TreeInsert(T, z)
+	y <- TreeSearchInexact(T, key[z])
+	parent[z] <- y
+	if (y = NULL) then
+		root[T] <- z
+	else if (key[z] < key[y]) then
+		left[y] <- z
+	else	
+		right[y] <- z
+		
+		
+TreeDelete(T, z)
+	if (left[z] = NULL and right[z]=NULL) then
+		y <- z
+	else
+		y <- TreeSuccessor(z)
+		if (right[y] != NULL) then
+			x <- right[y]
+		parent[x] <- parent[y]
+		if (parent[y] = NULL) then
+			root[T] <- x
+		else if y = left[parent[y]] then
+			left[parent[y]] <- x
+		else
+			right[parent[y]] <- x
+		if y != z then 
+			key[z] <- key[y]
+		return y
+
