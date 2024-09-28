@@ -2,60 +2,35 @@
 //
 
 #include <iostream>
+#include "Monster.h"
 using namespace std;
 
 
-class Monster {
-public: 
-    string name;
-    float health;
-    float damage;
-    
-    //Monster() {
-    //    name = "Goblin";
-    //    health = 15;
-    //    damage = 4;
-    //}
-    Monster(string name, float health, float damage) {
-        this->damage = damage;
-        this->name = name;
-        this->health = health;
-    }
-    ~Monster() {
-        cout << "Object " << this->name << " destroy" << endl;
-    }
+void test(const Monster& mLink)
+{
+    cout << mLink.maxHealth << endl;
+    //mLink.setHealth(60);//ошибка
+}
 
-    //Monster(string name, float health, float damage) :name(name), health(health), damage(damage) {};
-    //Monster() :Monster("Monster", 2, 2) {};
-};
 
 int main()
 {
-    //std::cout << "Hello World!\n";
-    Monster m("Goblin", 10, 5);
-    //Monster mCopy = m;
-    //Monster& mLink = m;
+    Monster m = Monster("goblin", 4, 6, 90);
+    Monster m2 = Monster("attack", 20, 6, 90);
+    m.attack(m2);
+    cout << m2.getHealth() << endl;
+    m.setHealth(55);
+    cout << m.getHealth() << endl;
+    test(m);
 
-    Monster* pM = &m;
-    cout << pM << endl;
-    cout << (*pM).damage << endl;
-    //Monster mNew;
-    cout << m.name << " " << m.damage << " " << m.health << endl;
-    //cout << mCopy.name << " " << mCopy.damage << " " << mCopy.health << endl;
-    //cout << mLink.name << " " << mLink.damage << " " << mLink.health << endl;
-    //cout << mNew.name << " " << mNew.damage << " " << mNew.health << endl;
-    //m.name = "Goblin";
-    //m.damage = 10.0;
-    //m.health = 13;  
-    //cout << m.name << " " << m.damage << " " << m.health << endl;
-    Monster* monster = new Monster("SkyMonster", 5, 7);
-    cout << monster->name << " " << monster->damage << " " << monster->health << endl;
-    delete monster;
-    
-    if (true) {
-        Monster test = Monster("test", 4, 5);
-        //Monster* monster = new Monster("SkyMonster", 5, 7);
-     }
+
+
+    //cout << m.getLevel() << endl;
+    //m.applyDamage(6);
+    //m.applyDamage();
+    //cout << m.health << endl;
+    //m.recovery();
+    //cout << m.health << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
