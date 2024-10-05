@@ -14,7 +14,8 @@ private:
     float maxHealth;
 public:
     Monster(string name, float health, float damage, float maxHealth);
-    ~Monster();
+    static int count;
+    static void resetCounter();
     friend void test(const Monster& mLink);
     string getName();
     float getHealth();
@@ -29,5 +30,6 @@ public:
     void applyDamage(float damage);
     void attack(Monster& m);
     void recovery();
+    ~Monster();
 };
 

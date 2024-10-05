@@ -10,7 +10,12 @@ Monster::Monster(string name, float health, float damage, float maxHealth) {
         this->name = name;
         this->health = health;
         this->maxHealth = maxHealth;
+        count++;
     }
+void Monster::resetCounter()
+{
+    count = 0;
+}
     Monster::~Monster() {
         cout << "Object " << this->name << " destroy" << endl;
     }

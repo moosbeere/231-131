@@ -5,6 +5,7 @@
 #include "Monster.h"
 using namespace std;
 
+int Monster::count = 0;
 
 void test(const Monster& mLink)
 {
@@ -22,7 +23,9 @@ int main()
     m.setHealth(55);
     cout << m.getHealth() << endl;
     test(m);
-
+    cout << Monster::count << endl;
+    Monster::resetCounter();
+    cout << m2.count << endl;
 
 
     //cout << m.getLevel() << endl;
