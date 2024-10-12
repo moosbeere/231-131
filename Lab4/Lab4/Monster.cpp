@@ -1,4 +1,7 @@
 #include "Monster.h"
+#include <iostream>
+#include <string>
+
 
 void Monster::printWarning(string msg)
 {
@@ -12,6 +15,16 @@ Monster::Monster(string name, float health, float damage, float maxHealth) {
         this->maxHealth = maxHealth;
         count++;
     }
+
+Monster::Monster() {
+
+    name = "Spider";
+
+    health = 20;
+
+    damage = 15;
+
+}
 void Monster::resetCounter()
 {
     count = 0;
@@ -61,10 +74,20 @@ void Monster::resetCounter()
         health = health - damage;
     }
 
-    void Monster::attack(Monster& m) {
-        m.applyDamage(this->damage);
-    }
-
     void Monster::recovery() {
         this->health = maxHealth;
+    }
+
+    void Monster::print()
+    {
+        cout << "Name: " << name << endl;
+        cout << "health: " << health << endl;
+        cout << "maxHealth: " << maxHealth << endl;
+        cout << "damage: " << damage << endl;
+    }
+
+    Monster::operator string() const
+    {
+        //name = "new Name"; error
+        return name + " " + std::to_string((int)health);
     }

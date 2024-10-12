@@ -6,6 +6,8 @@
 #include "Gun.h"
 #include "Characteristic.h"
 #include "Move.h"
+#include "FlyMonster.h"
+#include "CrawlingMonster.h"
 
 using namespace std;
 
@@ -33,22 +35,54 @@ struct Item {
 
 void printItem(Item& item);
 
+bool operator < (FlyMonster m1, FlyMonster m2) {
+    return m1.getHealth() < m2.getHealth();
+}
+bool operator > (FlyMonster m1, FlyMonster m2) {
+    return m1.getHealth() > m2.getHealth();
+}
+
 int main()
 {
+
+    CrawlingMonster crm;
+    //Monster m;
+    FlyMonster m1 = FlyMonster("Dragon", 10, 2, 20, 4);
+    FlyMonster m2 = FlyMonster("Amfibia", 20, 2, 30, 4);
+    //cout << m1.getHealth() << endl;
+    //cout << m2.getHealth() << endl;
+
+    //cout << (m1 < m2) << endl;
+    FlyMonster m3 = m1 + m2;
+    //m3.print();
+    string s = (string)m3;
+    //cout << s << endl;
+
+    m1.attack(m2);
+    m2.print();
+    crm.attack(m2);
+
+    /*Monster monsters[] = { Monster(), FlyMonster(), FlyMonster()};
+    for (auto n : monsters) {
+        cout << (string)n << endl;
+    }*/
+
+
+
     //lab5
     setlocale(LC_ALL, "RU");
-    Move::move(Direction::EAST);
-    Move::move(Direction::WEST);
+    //Move::move(Direction::EAST);
+    //Move::move(Direction::WEST);
 
-    Item item;
-    item.name = "Зелье здоровья";
-    item.description = "Вщсстанавливает 50 единиц здоровья";
-    item.price = 20;
-    //cout << item.name << endl;
-    printItem(item);
-    Item item2 = { "Save live", "Bonus", 100 };
-    printItem(item2);
-    item2.print();
+    //Item item;
+    //item.name = "Зелье здоровья";
+    //item.description = "Вщсстанавливает 50 единиц здоровья";
+    //item.price = 20;
+    ////cout << item.name << endl;
+    //printItem(item);
+    //Item item2 = { "Save live", "Bonus", 100 };
+    //printItem(item2);
+    //item2.print();
 
 
     /*Lab4
