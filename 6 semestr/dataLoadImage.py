@@ -104,7 +104,7 @@ print_labels('Predict', predict)
 
 images = torchvision.utils.make_grid(images)
 images = images/2 + 0.5
-plt.imshow(np.transpose(images.numpy(), (1,2,0)))
+plt.imshow(np.transpose(images.numpy(), (1,2,0 )))
 plt.show()
 
 
