@@ -1,10 +1,13 @@
+import numpy as np
 import torch
 import torch.nn as nn
+import torchvision.utils
 from torch.optim import Adam
 from torchvision.datasets import CIFAR10
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
 
 root = "./Data_10"
 batch_size = 10
@@ -67,19 +70,41 @@ classes=['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse'
 loss = nn.CrossEntropyLoss()
 optimizer = Adam(model.parameters(), lr=0.001, weight_decay = 0.0001)
 
-num_epochs = 3
+num_epochs = 4
 best_accuracy = 0.0
 model_save_path = "./LearnModel.pth"
-model.train()
-for epoch in range(num_epochs):
-    for i, (images, labels) in enumerate(train_data_loader, 0):
-        optimizer.zero_grad()
-        output = model(images)
-        error = loss(output, labels)
-        error.backward()
-        optimizer.step()
-    accuracy = test_acccuracy()
-    if(accuracy > best_accuracy):
-        best_accuracy = accuracy
-        torch.save(model.state_dict(), model_save_path)
-    print('Epoch: %d, Accuracy: %d%%' %(epoch+1, accuracy))
+# model.train()
+# for epoch in range(num_epochs):
+#     for i, (images, labels) in enumerate(train_data_loader, 0):
+#         optimizer.zero_grad()
+#         output = model(images)
+#         error = loss(output, labels)
+#         error.backward()
+#         optimizer.step()
+#     accuracy = test_acccuracy()
+#     if(accuracy > best_accuracy):
+#         best_accuracy = accuracy
+#         torch.save(model.state_dict(), model_save_path)
+#     print('Epoch: %d, Accuracy: %d%%' %(epoch+1, accuracy))
+
+
+def print_labels(title, labels):
+    print(title, end=' ')
+    for i in range(10):
+        print(classes[labels[i]], end=' ')
+    print()
+
+load_model = Image()
+load_model.load_state_dict(torch.load(model_save_path))
+images, labels = next(iter(test_data_loader))
+print_labels('True labels', labels)
+output = load_model(images)
+predict = torch.max(output,1)[1]
+print_labels('Predict', predict)
+
+images = torchvision.utils.make_grid(images)
+images = images/2 + 0.5
+plt.imshow(np.transpose(images.numpy(), (1,2,0)))
+plt.show()
+
+
